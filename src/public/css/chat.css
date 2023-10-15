@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.btnContainer{
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
+#chatButton{
+    padding: 0.4rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#chatButton:hover{
+    background-color: #1244;
+}
+
+.chatContainer p{
+    margin: 1rem;
+    padding: 1rem;
+    background: linear-gradient(to left, rgba(55, 188, 155, 0.267),  rgba(99, 185, 164, 0.267));
+    border-radius: 10px;
+}   

@@ -1,0 +1,55 @@
+.login{
+    margin: auto;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border: 1.5px black solid;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30vw;
+    margin-bottom: 1rem;
+    text-align: center;
+    background-color: #b46cd8a2;
+}
+
+#idForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1.5px black solid;
+    background: linear-gradient(to right, #6d69d9, #8c36b7, #051c55d8);
+    padding: 1rem;
+    margin: auto;
+    text-align: center;
+    gap: 0.6rem;
+    border-radius: 10px;
+}
+
+#email,#first_name, #password, #last_name, #age{
+    width: 40vw;
+    margin: auto;
+}
+
+#buttonLog{
+    width: 20vw;
+    margin: auto;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#buttonLog:hover{
+    background-color: #6d69d9;
+}
+
+#userContainer{
+    border: 1.5px black solid;
+    background-color: #98a3bf;
+}
+
+
+
+.error{
+    background-color: #e37e57;
+    padding: 1rem;
+}

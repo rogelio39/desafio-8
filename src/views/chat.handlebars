@@ -1,0 +1,16 @@
+<h1>Chat Socket.io</h1>
+
+
+<div class="btnContainer">
+    <button id="chatButton">Enviar</button>
+    <textarea name="message" id="chatBox" placeholder="Escribe tu mensaje aquí"></textarea>
+</div>
+
+<div class="chatContainer">
+    <div class="messageContainer">
+        {{#each messagesView}}
+        <p>{{this.email}}{{this.message}}{{this.postTime}}</p>
+        {{/each}}
+        <p id="messageParagraph"></p>
+    </div>
+</div>

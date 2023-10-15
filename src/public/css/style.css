@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(215, 178, 130);
+}
+
+
+.container{
+    background-color: aliceblue;
+    border: black 2px solid;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}

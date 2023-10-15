@@ -1,0 +1,13 @@
+[
+    {
+        "title": "tortilla",
+        "description": "tortilla",
+        "price": "1500",
+        "code": "153",
+        "status": true,
+        "stock": 10,
+        "category": "panes",
+        "thumbnail": [],
+        "id": "93b6fc85-2b5b-4216-aeb8-df90da7629d5"
+    }
+]

@@ -1,0 +1,16 @@
+
+.on{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: rgb(125, 201, 176);
+    font-weight: 800;
+}
+
+
+.products{
+    border: black 1px solid;
+    padding: 1rem;
+}

@@ -1,0 +1,37 @@
+<h1>Crear nuevo producto</h1>
+<form id="idForm">
+    <label for="title">Nombre del producto:</label>
+    <input type="text" name="title" required>
+
+    <label for="description">Descripcion</label>
+    <input type="text" name="description" required>
+
+    <label for="price">Precio</label>
+    <input type="text" name="price" required>
+
+    <label for="code">Codigo</label>
+    <input type="text" name="code" required>
+
+    <label for="stock">Stock</label>
+    <input type="text" name="stock" required>
+
+    <label for="category">Categoria</label>
+    <input type="text" name="category" required>
+
+    <button type="submit" id="button"> Crear </button>
+
+</form>
+
+
+
+<div id="showProducts" class="on">
+    {{#each prods}}
+    <div class="products">
+        <p>Nombre:{{this.title}}</p>
+        <p>Descripcion:{{this.description}}</p>
+        <p>Precio:${{this.price}}</p>
+        <p>Stock disponible:{{this.stock}}</p>
+        <p>Codigo del producto:{{this.code}}</p>
+    </div>
+    {{/each}}
+</div>

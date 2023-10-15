@@ -1,0 +1,15 @@
+<div id="welcomeMessage">
+    <p>Bienvenido: {{this.name}} {{this.lastName}} Has iniciado session correctamente</p>
+</div>
+<div id="showProducts" class="on">
+    {{#each products}}
+    <div class="products">
+        <p>Nombre:{{this.title}}</p>
+        <p>Descripcion:{{this.description}}</p>
+        <p>Precio:${{this.price}}</p>
+        <p>Stock disponible:{{this.stock}}</p>
+    </div>
+    {{/each}}
+</div>
+
+<button id="logout">CERRAR SESION</button>
