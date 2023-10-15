@@ -10,7 +10,6 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
 
-
 import path from 'path';
 import { __dirname } from "./path.js";
 import { engine } from "express-handlebars";
