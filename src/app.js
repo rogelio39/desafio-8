@@ -8,52 +8,36 @@ import passport from 'passport';
 import initializePassport from './config/passport.js';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-
-
 import path from 'path';
 import { __dirname } from "./path.js";
 import { engine } from "express-handlebars";
 
 
+//importacion controllers
 import { ProductsManager } from "./controllers/productsManager.js";
 import { Products } from './models/localProducts.models.js';
-
-const productManager = new ProductsManager();
-
 //models
 import { messageModel } from "./models/messages.models.js";
 import { productModel } from './models/products.models.js';
 
-
-//rutas productos
+//importaciones rutas locales
 import localProductsRouter from './routes/localProducts.routes.js';
-import productRouter from './routes/products.routes.js';
-
-//rutas carts
 import localCartRouter from './routes/localCart.routes.js';
-import cartRouter from './routes/cart.routes.js';
 
-//rutas user
-import userRouter from './routes/users.routes.js';
-
-//sessions routes
-import sessionRouter from "./routes/session.routes.js";
-
-
-//models
-
+//rutas de db
+import router from './routes/index.routes.js';
 
 const PORT = 8080;
 
 const app = express();
 
 //VARIABLES GLOBALES
+const productManager = new ProductsManager();
 
 //variable para enviar userEmail por socket.
 let userEmail;
 
-
-//config multer
+//config multer 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         callback(null, 'src/public/img');
@@ -157,26 +141,16 @@ io.on('connection', async (socket) => {
 })
 
 
-
+//local routes
 //routes productos
 app.use('/api/localProducts', localProductsRouter);
-
 //routes cart
 app.use('/api/localCarts', localCartRouter);
 
-//routes users 
-app.use('/api/users', userRouter);
+//db routes
+app.use('/', router);
 
-//routes products con mongo
-app.use('/api/products', productRouter);
-
-
-//routes carts con mongo
-app.use('/api/carts', cartRouter);
-
-//routes de session
-app.use('/api/sessions', sessionRouter);
-
+//vistas
 
 app.get('/static/login', async (req, res) => {
 
@@ -199,8 +173,6 @@ app.get('/static/register', async (req, res) => {
 
     })
 });
-
-
 app.get('/static/products', async (req, res) => {
 
 
@@ -233,7 +205,6 @@ app.get('/static/products', async (req, res) => {
     }
 
 })
-
 
 
 //este es el endpoint en el que me voy a conectar a mi aplicacion

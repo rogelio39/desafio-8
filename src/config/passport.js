@@ -17,32 +17,32 @@ const ExtractJWT = jwt.ExtractJwt //Extraer de las cookies el token
 const initializePassport = () => {
 
     const cookieExtractor = req => {
-            console.log("cookie: ", req.cookies)
+        // console.log("cookie: ", req.cookies)
 
-    const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {};
+        const token = req.cookies.jwtCookie ? req.cookies.jwtCookie : {};
 
-    console.log("TOKEN: ", token)
-    return token;
-}
+        // console.log("TOKEN: ", token)
+        return token;
+    }
 
-passport.use('jwt', new JWTStrategy({
-    jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]), //el token vendra desde cookieExtractor.
-    secretOrKey : process.env.JWT_SECRET
+    passport.use('jwt', new JWTStrategy({
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]), //el token vendra desde cookieExtractor.
+        secretOrKey: process.env.JWT_SECRET
 
-}, async(jwt_payload, done) => {//jwt_payload = info del token (en este caso datos del cliente)                            
-        try{
+    }, async (jwt_payload, done) => {//jwt_payload = info del token (en este caso datos del cliente)                            
+        try {
             console.log("payload: ", jwt_payload);
             return done(null, jwt_payload);
-        }catch(error){
+        } catch (error) {
             return done(error);
         }
-}))
+    }))
 
-    passport.use('register', new LocalStrategy( 
+    passport.use('register', new LocalStrategy(
         { passReqToCallback: true, usernameField: ('email') },
         async (req, username, password, done) => {
             ///registro de usuario
-            const { first_name, last_name, email, age} = req.body;
+            const { first_name, last_name, email, age } = req.body;
             try {
                 const user = await userModel.findOne({ email: username });
 
@@ -69,38 +69,38 @@ passport.use('jwt', new JWTStrategy({
     ))
 
     passport.use('login', new LocalStrategy(
-        { usernameField: 'email'} , async(username, password, done) =>{
-            try{
-                const user = await userModel.findOne({email: username})
-                if(!user){
+        { usernameField: 'email' }, async (username, password, done) => {
+            try {
+                const user = await userModel.findOne({ email: username })
+                if (!user) {
                     return done(null, false);
                 }
-                if(validatePassword(password, user.password)){
+                if (validatePassword(password, user.password)) {
                     return done(null, user);
                 }
                 return done(null, false);
 
-            }catch(error){
+            } catch (error) {
                 return done(error)
             }
-    })) 
+        }))
 
     passport.use('github', new GithubStrategy({
-        clientID : process.env.CLIENT_ID,
+        clientID: process.env.CLIENT_ID,
         clientSecret: process.env.SECRET_CLIENT,
         callbackURL: process.env.CALLBACK_URL
-    }, async(accessToken, refreshToken, profile, done) => {
-        try{
+    }, async (accessToken, refreshToken, profile, done) => {
+        try {
             // console.log(accessToken)
             // console.log(refreshToken)
             // console.log(profile._json)
 
-            const user = await userModel.findOne({email: profile._json.email})
-            if(user) {
+            const user = await userModel.findOne({ email: profile._json.email })
+            if (user) {
                 done(null, false);
             } else {
                 const userCreated = await userModel.create({
-                    first_name : profile._json.name,
+                    first_name: profile._json.name,
                     last_name: "",
                     age: 18, //edad por defecto
                     email: profile._json.email,
@@ -109,7 +109,7 @@ passport.use('jwt', new JWTStrategy({
                 done(null, userCreated);
             }
 
-        }catch(error){
+        } catch (error) {
             done(error)
         }
     }))
@@ -120,10 +120,10 @@ passport.use('jwt', new JWTStrategy({
     })
 
     //eliminar la session
-    passport.deserializeUser(async(id, done)=> {
+    passport.deserializeUser(async (id, done) => {
         const user = await userModel.findById(id);
         done(null, user);
     })
-    }
+}
 
-    export default initializePassport;
+export default initializePassport;

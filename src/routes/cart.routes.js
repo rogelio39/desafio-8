@@ -6,14 +6,14 @@ const cartRouter = Router();
 
 
 
-cartRouter.post('/', async (req, res) => {
-    try {
-        const createCart = await cartModel.create({});
-        res.status(200).send({ respuesta: 'ok', mensaje: createCart });
-    } catch (error) {
-        res.status(500).send({ respuesta: 'error en crear carrito', mensaje: error })
-    }
-})
+// cartRouter.post('/', async (req, res) => {
+//     try {
+//         const createCart = await cartModel.create({});
+//         res.status(200).send({ respuesta: 'ok', mensaje: createCart });
+//     } catch (error) {
+//         res.status(500).send({ respuesta: 'error en crear carrito', mensaje: error })
+//     }
+// })
 
 
 
